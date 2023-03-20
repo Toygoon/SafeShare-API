@@ -35,6 +35,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Rest Framework 추가
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    # API 앱 추가
+    'api',
+    # Swagger 추가
+    'drf_yasg',
+    # CORS 관련 패키지 추가
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
