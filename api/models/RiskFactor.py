@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -7,13 +8,13 @@ class RiskFactor(models.Model):
 
     Args:
         name (CharField): 위험 정보에 대한 이름
-        risk_level (PositiveIntegerField): 재난에 대한 위험 수준
+        risk_level (PositiveIntegerField): 재난에 대한 위험 수준, 최소 0 ~ 최대 5
+        risk_impact (PositiveIntegerField): 재난이 끼치는 영향, 최소 0 ~ 최대 100
     """
 
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    risk_level = models.PositiveIntegerField()
-    risk_impact = models.PositiveIntegerField()
+    risk_level = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    risk_impact = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
 
     class Meta:
         db_table = 'risk_factor'
