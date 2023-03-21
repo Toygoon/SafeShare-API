@@ -12,7 +12,6 @@ class UserAction(models.Model):
         latlng (ForeignKey): LatLng의 외래키
     """
 
-    id = models.AutoField(primary_key=True)
     startTime = models.DateTimeField(auto_now=False, default=None, null=True)
     endTime = models.DateTimeField(auto_now=False, default=None, null=True)
     user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, default=None)
