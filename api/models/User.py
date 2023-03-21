@@ -16,10 +16,37 @@ class User(models.Model):
     user_id = models.CharField(max_length=10)
     user_pw = models.CharField(max_length=50)
     name = models.CharField(max_length=10)
-    mileage = models.PositiveIntegerField()
+    mileage = models.PositiveIntegerField(default=0)
     mobile = models.CharField(max_length=50)
 
     class Meta:
         db_table = 'user'
         verbose_name = 'user'
         verbose_name_plural = 'users'
+
+    def get_attribute(self, attr: str):
+        """
+        attr로 전달된 str 형식의 attr 이름을 통해 실제 데이터를 반환
+
+        Args:
+            attr (str): Model의 attribute
+
+        Returns:
+            data (str) or None
+        """
+
+        if 'user_id' in attr:
+            return self.user_id
+        elif 'user_pw' in attr:
+            return self.user_pw
+        elif 'name' in attr:
+            return self.name
+        elif 'mileage' in attr:
+            return self.mileage
+        elif 'mobile' in attr:
+            return self.mobile
+        else:
+            return None
+
+    def __str__(self):
+        return self.user_id
