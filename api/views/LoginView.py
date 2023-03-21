@@ -1,10 +1,10 @@
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
-from rest_framework.authtoken.admin import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from api.models import User
 from api.serializer import UserSerializer
 
 
@@ -61,10 +61,11 @@ class LoginView(APIView):
         # Find the user from table
         user = None
         try:
-            user = User.objects.all.filter(user_id=user_id, user_pw=user_pw)
+            user = User.objects.all().filter(user_id=user_id, user_pw=user_pw).last()
         except:
             pass
 
+        print(user)
         # Failed to find user, or password error
         if user is None:
             return Response({'error': 'authentication error'}, status=status.HTTP_401_UNAUTHORIZED)
