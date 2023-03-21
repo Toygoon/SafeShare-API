@@ -1,1 +1,1 @@
-from LoginView import *
+from .LoginView import *
