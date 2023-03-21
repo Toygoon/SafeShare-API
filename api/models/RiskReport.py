@@ -1,6 +1,6 @@
 from django.db import models
 
-from api.models import RiskFactor
+from api.models import RiskFactor, LatLng, User
 
 
 class RiskReport(models.Model):
@@ -17,7 +17,7 @@ class RiskReport(models.Model):
     """
     risk_factor = models.ForeignKey(on_delete=models.SET_NULL, null=True, default=None, to=RiskFactor)
     summary = models.TextField(max_length=500)
-    latlng = models.ForeignKey(on_delete=models.SET_NULL, null=True, default=None)
-    user = models.ForeignKey(on_delete=models.SET_NULL, null=True, default=None)
+    latlng = models.ForeignKey(on_delete=models.SET_NULL, null=True, default=None, to=LatLng)
+    user = models.ForeignKey(on_delete=models.SET_NULL, null=True, default=None, to=User)
     reported_at = models.DateTimeField(auto_now=True)
     is_solved = models.BooleanField(default=False)
