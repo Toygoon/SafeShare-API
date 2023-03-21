@@ -9,7 +9,7 @@ class UserAction(models.Model):
         startTime (DateTimeField): 시작 시간
         endTime (DateTimeField): 종료 시간
         user (ForeignKey): User의 외래키
-        lng (ForeignKey): LatLng의 외래키
+        latlng (ForeignKey): LatLng의 외래키
     """
 
     id = models.AutoField(primary_key=True)
