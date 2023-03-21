@@ -10,6 +10,12 @@ class LatLng(models.Model):
         lng (FloatField): longitude, 경도
         addr (CharField): 상세 주소
     """
+
     lat = models.FloatField()
     lng = models.FloatField()
     addr = models.CharField(max_length=200)
+
+    class Meta:
+        db_table = 'latlng'
+        verbose_name = 'latlng'
+        verbose_name_plural = 'latlngs'

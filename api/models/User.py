@@ -13,8 +13,14 @@ class User(models.Model):
         mobile (CharField): 전화번호
     """
 
+    id = models.AutoField(primary_key=True)
     user_id = models.CharField(max_length=10)
     user_pw = models.CharField(max_length=50)
     name = models.CharField(max_length=10)
     mileage = models.PositiveIntegerField()
     mobile = models.CharField(max_length=50)
+
+    class Meta:
+        db_table = 'user'
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
