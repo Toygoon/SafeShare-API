@@ -16,6 +16,9 @@ class RiskFactor(models.Model):
     risk_level = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     risk_impact = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = 'risk_factor'
         verbose_name = 'risk_factor'
