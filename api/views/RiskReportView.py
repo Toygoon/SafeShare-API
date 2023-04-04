@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from api.management import check_user
 from api.models import RiskFactor, RiskReport, LatLng, User
 from api.serializer import RiskReportSerializer
 
@@ -71,12 +72,10 @@ class RiskReportView(APIView):
         latlng.save()
 
         # Find user
-        user = User.objects.all().filter(user_id=user_id)
+        user = check_user(user_id)
 
-        if len(user) < 1:
+        if user is None:
             return Response({'error': 'not existing user'}, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            user = user.last()
 
         # Create risk report
         risk_report = RiskReport(summary=summary, latlng=latlng, risk_factor=risk_factor, user=user)
