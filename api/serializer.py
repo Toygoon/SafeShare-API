@@ -33,3 +33,12 @@ class RiskReportSerializer(serializers.Serializer):
     lat = serializers.FloatField()
     lng = serializers.FloatField()
     user = serializers.CharField(max_length=50)
+
+
+class AppTokenSerializer(serializers.Serializer):
+    """
+    Firebase의 token을 수신하기 위한 직렬화 클래스
+    """
+
+    token = serializers.CharField(max_length=500)
+    user = serializers.CharField(max_length=50)
