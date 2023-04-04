@@ -11,6 +11,8 @@ class User(models.Model):
         name (CharField): 이름
         mileage (PositiveIntegerField): 마일리지
         mobile (CharField): 전화번호
+        registered_at (DateTimeField): 가입일자
+        app_token (TextField): Firebase에서 사용되는 Android 기기의 사용자 token
     """
 
     user_id = models.CharField(max_length=10)
@@ -18,6 +20,8 @@ class User(models.Model):
     name = models.CharField(max_length=10)
     mileage = models.PositiveIntegerField(default=0)
     mobile = models.CharField(max_length=50)
+    registered_at = models.DateTimeField(auto_now_add=True)
+    app_token = models.TextField(max_length=500)
 
     class Meta:
         db_table = 'user'
