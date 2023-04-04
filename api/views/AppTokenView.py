@@ -51,4 +51,7 @@ class AppTokenView(APIView):
         if user is None:
             return Response({'error': 'user error'}, status=status.HTTP_400_BAD_REQUEST)
 
+        user.app_token = token
+        user.save()
+
         return Response({'result': 'ok'}, status=status.HTTP_202_ACCEPTED)
