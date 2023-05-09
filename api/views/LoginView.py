@@ -65,7 +65,6 @@ class LoginView(APIView):
         except:
             pass
 
-        print(user)
         # Failed to find user, or password error
         if user is None:
             return Response({'error': 'authentication error'}, status=status.HTTP_401_UNAUTHORIZED)
