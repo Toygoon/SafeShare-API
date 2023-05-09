@@ -30,7 +30,8 @@ class LoginView(APIView):
             description='로그인 성공',
             examples={
                 'application/json': {
-                    'result': 'ok'
+                    'result': 'ok',
+                    'name': '홍길동'
                 }
             }
         ), 400: openapi.Response(
@@ -59,7 +60,7 @@ class LoginView(APIView):
             return Response({'error': 'input error'}, status=status.HTTP_400_BAD_REQUEST)
 
         # Find the user from table
-        user = None
+        user: User = None
         try:
             user = User.objects.all().filter(user_id=user_id, user_pw=user_pw).last()
         except:
@@ -69,4 +70,4 @@ class LoginView(APIView):
         if user is None:
             return Response({'error': 'authentication error'}, status=status.HTTP_401_UNAUTHORIZED)
 
-        return Response({'result': 'ok'}, status=status.HTTP_200_OK)
+        return Response({'result': 'ok', 'name': user.name}, status=status.HTTP_200_OK)
