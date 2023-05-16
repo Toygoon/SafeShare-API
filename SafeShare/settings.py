@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Allow CSRF origins
-CSRF_TRUSTED_ORIGINS = ['https://safeshare.toygoon.com/']
+CSRF_TRUSTED_ORIGINS = ['https://*.toygoon.com', 'https://*.127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
