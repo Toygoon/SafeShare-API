@@ -29,8 +29,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# Application definition
+# Allow CSRF origins
+CSRF_TRUSTED_ORIGINS = ['https://safeshare.toygoon.com/']
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
