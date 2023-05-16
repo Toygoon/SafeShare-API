@@ -42,3 +42,12 @@ class AppTokenSerializer(serializers.Serializer):
 
     token = serializers.CharField(max_length=500)
     user = serializers.CharField(max_length=50)
+
+
+class PushSerializer(serializers.Serializer):
+    """
+    Push로 메시지를 보내기 위한 직렬화 클래스
+    """
+
+    target_user = serializers.CharField(max_length=50)
+    msg = serializers.CharField(max_length=500)

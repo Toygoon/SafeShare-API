@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     # CORS 관련 패키지 추가
     'corsheaders',
+    # Firebase
+    'fcm_django',
 ]
 
 MIDDLEWARE = [
