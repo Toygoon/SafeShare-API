@@ -50,4 +50,5 @@ class PushSerializer(serializers.Serializer):
     """
 
     target_user = serializers.CharField(max_length=50)
+    title = serializers.CharField(max_length=100)
     msg = serializers.CharField(max_length=500)
