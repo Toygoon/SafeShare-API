@@ -14,6 +14,7 @@ class RiskReport(models.Model):
         user (ForeignKey): User의 외래키
     """
 
+    title = models.TextField(max_length=50)
     summary = models.TextField(max_length=500)
     reported_at = models.DateTimeField(auto_now=True)
     is_solved = models.BooleanField(default=False)
