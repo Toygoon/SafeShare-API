@@ -4,3 +4,4 @@ from .RiskReportView import *
 from .AppTokenView import *
 from .PushView import *
 from .GetRiskFactor import *
+from .LocationView import *
