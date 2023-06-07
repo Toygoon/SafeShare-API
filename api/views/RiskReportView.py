@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.management import check_user
-from api.models import RiskFactor, RiskReport, LatLng, User
+from api.models import RiskFactor, RiskReport, LatLng, UserAction
 from api.serializer import RiskReportSerializer
 
 
@@ -51,6 +51,7 @@ class RiskReportView(APIView):
         )
         })
     def post(self, request):
+        title = request.data.get('title')
         summary = request.data.get('summary')
         risk_factor_name = request.data.get('risk_factor')
         lat = request.data.get('lat')
@@ -78,7 +79,11 @@ class RiskReportView(APIView):
             return Response({'error': 'not existing user'}, status=status.HTTP_400_BAD_REQUEST)
 
         # Create risk report
-        risk_report = RiskReport(summary=summary, latlng=latlng, risk_factor=risk_factor, user=user)
+        risk_report = RiskReport(title=title, summary=summary, latlng=latlng, risk_factor=risk_factor, user=user)
         risk_report.save()
+
+        # Create user action
+        user_action = UserAction(user=user)
+        user_action.save()
 
         return Response({'result': 'accepted'}, status=status.HTTP_202_ACCEPTED)
