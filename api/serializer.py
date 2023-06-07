@@ -52,3 +52,13 @@ class PushSerializer(serializers.Serializer):
     target_user = serializers.CharField(max_length=50)
     title = serializers.CharField(max_length=100)
     msg = serializers.CharField(max_length=500)
+
+
+class LocationSerializer(serializers.Serializer):
+    """
+    위치를 전송, 수신하기 위한 직렬화 클래스
+    """
+
+    lat = serializers.FloatField()
+    lng = serializers.FloatField()
+    user = serializers.CharField(max_length=50)
