@@ -32,6 +32,13 @@ class LocationView(APIView):
             description='업데이트 성공',
             examples={
                 'application/json': {
+                    'result': 'updated'
+                }
+            }
+        ), 201: openapi.Response(
+            description='위치 정보만 저장',
+            examples={
+                'application/json': {
                     'result': 'ok'
                 }
             }
@@ -57,11 +64,13 @@ class LocationView(APIView):
 
         # Get user action
         user_action = UserAction.objects.all().last()
+        latlng = LatLng(lat=float(lat), lng=float(lng))
 
         if user_action:
-            user_action.latlng = LatLng(lat=float(lat), lng=float(lng))
+            user_action.latlng = latlng
             user_action.save()
 
-            return Response({'result': 'ok'}, status=status.HTTP_202_ACCEPTED)
+            return Response({'result': 'updated'}, status=status.HTTP_202_ACCEPTED)
         else:
-            return Response({'error': 'user error'}, status=status.HTTP_400_BAD_REQUEST)
+            latlng.save()
+            return Response({'result': 'ok'}, status=status.HTTP_201_CREATED)
