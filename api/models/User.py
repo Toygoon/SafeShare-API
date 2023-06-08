@@ -22,6 +22,7 @@ class User(models.Model):
     mobile = models.CharField(max_length=50)
     registered_at = models.DateTimeField(auto_now_add=True)
     app_token = models.TextField(max_length=500)
+    is_paramedic = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'user'
