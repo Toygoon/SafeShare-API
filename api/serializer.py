@@ -28,6 +28,7 @@ class RiskReportSerializer(serializers.Serializer):
     RiskReport에서 쓰이는 재난보고 직렬화 클래스
     """
 
+    title = serializers.CharField(max_length=50)
     summary = serializers.CharField(max_length=500)
     risk_factor = serializers.CharField(max_length=100)
     lat = serializers.FloatField()

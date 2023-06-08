@@ -22,7 +22,7 @@ class RiskReportView(APIView):
 
     @swagger_auto_schema(
         operation_id='POST /risk_report',
-        operation_description='(회원가입) POST 요청으로 재난 정보를 요청받습니다.',
+        operation_description='(정보 전송) POST 요청으로 재난 정보를 요청받습니다.',
         manual_parameters=[openapi.Parameter('summary', openapi.IN_PATH, description='내용', required=True,
                                              type=openapi.TYPE_STRING),
                            openapi.Parameter('risk_factor', openapi.IN_PATH, description='재난 유형', required=True,
