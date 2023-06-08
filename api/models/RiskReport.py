@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 
 class RiskReport(models.Model):
@@ -16,7 +17,7 @@ class RiskReport(models.Model):
 
     title = models.TextField(max_length=50)
     summary = models.TextField(max_length=500)
-    reported_at = models.DateTimeField(auto_now=True)
+    reported_at = models.DateTimeField(default=now)
     is_solved = models.BooleanField(default=False)
     risk_factor = models.ForeignKey(on_delete=models.SET_NULL, null=True, default=None, to='RiskFactor')
     latlng = models.ForeignKey(on_delete=models.SET_NULL, null=True, default=None, to='LatLng')
