@@ -40,9 +40,4 @@ class RiskReport(models.Model):
         }
 
     def __lt__(self, other):
-        is_solved = self.is_solved and other.is_solved
-
-        if is_solved:
-            return self.reported_at < other.reported_at
-        else:
-            return not self.is_solved
+        return self.reported_at > other.reported_at
