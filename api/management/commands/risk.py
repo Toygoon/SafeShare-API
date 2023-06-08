@@ -1,6 +1,8 @@
+import random
+
 from django.core.management import BaseCommand
 
-from api.models import RiskFactor
+from api.models import RiskFactor, RiskReport, LatLng, User
 
 
 class Command(BaseCommand):
@@ -27,3 +29,26 @@ def do():
             r[i].save()
 
             print(f'[{i + 1}/{len(r)}] Created database named "{r[i].name}"')
+
+    # Make sample risk reports
+    n = 10
+    base = (35.8380000, 128.7120000)
+    max = 0.0009999
+
+    for i in range(n):
+        latlng = LatLng(lat=random.uniform(base[0], base[0] + max), lng=random.uniform(base[1], base[1] + max))
+        latlng.save()
+
+        users = User.objects.all().filter(name='sample')
+        if len(users) < 1:
+            user = User(name='sample', user_id='sample', user_pw='sample')
+            user.save()
+        else:
+            user = users.last()
+
+        rr = RiskReport(title='sample title', summary='sample summary',
+                        risk_factor=RiskFactor.objects.all().filter(name=random.choice(r).name).last(), latlng=latlng,
+                        user=user)
+
+        rr.save()
+        print(f'[{i + 1}/{n}] Created database {rr.to_dict()}')
