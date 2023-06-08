@@ -19,3 +19,9 @@ class LatLng(models.Model):
         db_table = 'latlng'
         verbose_name = 'latlng'
         verbose_name_plural = 'latlngs'
+
+    def to_dict(self):
+        return {
+            'lat': self.lat,
+            'lng': self.lng
+        }

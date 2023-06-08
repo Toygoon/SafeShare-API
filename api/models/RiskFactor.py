@@ -23,3 +23,10 @@ class RiskFactor(models.Model):
         db_table = 'risk_factor'
         verbose_name = 'risk_factor'
         verbose_name_plural = 'risk_factors'
+
+    def to_dict(self):
+        return {
+            'name': self.name,
+            'risk_level': self.risk_level,
+            'risk_impact': self.risk_impact
+        }
