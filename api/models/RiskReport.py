@@ -26,3 +26,22 @@ class RiskReport(models.Model):
         db_table = 'risk_report'
         verbose_name = 'risk_report'
         verbose_name_plural = 'risk_reports'
+
+    def to_dict(self):
+        return {
+            'title': self.title,
+            'summary': self.summary,
+            'reported_at': self.reported_at,
+            'is_solved': self.is_solved,
+            'risk_factor': self.risk_factor.to_dict(),
+            'latlng': self.latlng.to_dict(),
+            'user': self.user.user_id
+        }
+
+    def __lt__(self, other):
+        is_solved = self.is_solved and other.is_solved
+
+        if is_solved:
+            return self.reported_at < other.reported_at
+        else:
+            return not self.is_solved
