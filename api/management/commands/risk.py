@@ -1,4 +1,5 @@
 import random
+from datetime import datetime, timedelta
 
 from django.core.management import BaseCommand
 
@@ -46,9 +47,24 @@ def do():
         else:
             user = users.last()
 
+        # Find random date
+        start_date = datetime(2023, 1, 1)
+        end_date = datetime(2023, 12, 31)
+
+        random_hour = random.randint(0, 23)
+        random_minute = random.randint(0, 59)
+        random_second = random.randint(0, 59)
+
+        random_date = start_date + timedelta(days=random.randint(0, (end_date - start_date).days))
+
+        random_datetime = datetime(
+            random_date.year, random_date.month, random_date.day,
+            random_hour, random_minute, random_second
+        )
+
         rr = RiskReport(title='sample title', summary='sample summary',
                         risk_factor=RiskFactor.objects.all().filter(name=random.choice(r).name).last(), latlng=latlng,
-                        user=user)
+                        user=user, is_solved=random.choice([True, False]), reported_at=random_datetime)
 
         rr.save()
         print(f'[{i + 1}/{n}] Created database {rr.to_dict()}')
