@@ -9,5 +9,6 @@ urlpatterns = [
     path('token/', views.AppTokenView.as_view(), name='token'),
     path('push/', views.PushView.as_view(), name='push'),
     path('get_risk_factor/', views.GetRiskFactor.as_view(), name='get-risk-factor'),
-    path('location/', views.LocationView.as_view(), name='location')
+    path('location/', views.LocationView.as_view(), name='location'),
+    path('get_risk_report/', views.GetRiskReportView.as_view(), name='get-risk-report')
 ]
