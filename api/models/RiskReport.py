@@ -1,3 +1,5 @@
+import json
+
 from django.db import models
 from django.utils.timezone import now
 
@@ -38,6 +40,13 @@ class RiskReport(models.Model):
             'latlng': self.latlng.to_dict(),
             'user': self.user.user_id
         }
+
+    def to_json(self):
+        d = self.to_dict()
+        d['risk_factor'] = json.dumps(d['risk_factor'])
+        d['latlng'] = json.dumps(d['latlng'])
+
+        return json.dumps(d)
 
     def __lt__(self, other):
         return self.reported_at > other.reported_at

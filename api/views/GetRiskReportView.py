@@ -73,4 +73,4 @@ class GetRiskReportView(APIView):
         true = sorted(list(RiskReport.objects.all().filter(is_solved=True)))
         false = sorted(list(RiskReport.objects.all().filter(is_solved=False)))
 
-        return Response({'result': [x.to_dict() for x in false + true]}, status=status.HTTP_200_OK)
+        return Response({'result': [x.to_json() for x in false + true]}, status=status.HTTP_200_OK)
