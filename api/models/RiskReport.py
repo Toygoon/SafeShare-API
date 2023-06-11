@@ -46,7 +46,7 @@ class RiskReport(models.Model):
         d['risk_factor'] = json.dumps(d['risk_factor'])
         d['latlng'] = json.dumps(d['latlng'])
 
-        return json.dumps(d)
+        return json.dumps(d, default=str)
 
     def __lt__(self, other):
         return self.reported_at > other.reported_at
