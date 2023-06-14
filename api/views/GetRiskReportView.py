@@ -29,7 +29,7 @@ class GetRiskReportView(APIView):
             description='요청 완료',
             examples={
                 'application/json': {
-                    'result': 'accepted'
+                    'result': '{}'
                 }
             }
 
