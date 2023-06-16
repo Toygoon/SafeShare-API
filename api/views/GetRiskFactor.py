@@ -16,7 +16,7 @@ class GetRiskFactor(APIView):
     """
 
     @swagger_auto_schema(
-        operation_id='GET /app_token',
+        operation_id='GET /get_risk_factor',
         operation_description='(재난 종류 수신) 발생할 수 있는 모든 재난의 종류를 수신합니다.',
         responses={200: openapi.Response(
             description='정보 수신',
